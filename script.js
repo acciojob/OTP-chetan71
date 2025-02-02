@@ -1,30 +1,22 @@
+// Select all the OTP input fields
+const otpInputs = document.querySelectorAll('.code');
 
-        const inputs = document.querySelectorAll('.code');
+// Function to handle input focus shift
+otpInputs.forEach((input, index) => {
+  input.addEventListener('input', () => {
+    if (input.value) {
+      // Move focus to the next input if current is filled
+      if (index < otpInputs.length - 1) {
+        otpInputs[index + 1].focus();
+      }
+    }
+  });
 
-        inputs.forEach((input, index) => {
-            input.addEventListener('input', (e) => {
-                const value = e.target.value;
-                if (/^\d$/.test(value)) { // Check if the input is a single digit
-                    if (index < inputs.length - 1) {
-                        inputs[index + 1].focus(); // Move focus to the next input
-                    }
-                } else {
-                    e.target.value = ''; // Clear the input if it's not a digit
-                }
-            });
-
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace') {
-                    if (e.target.value === '') {
-                        // If the current input is empty, move focus to the previous input
-                        if (index > 0) {
-                            inputs[index - 1].focus();
-                        }
-                    } else {
-                        // If the current input has a value, clear it
-                        e.target.value = '';
-                    }
-                }
-            });
-        });
-    
+  // Handle the backspace functionality
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Backspace' && !input.value && index > 0) {
+      // Move focus to the previous input if the current is empty
+      otpInputs[index - 1].focus();
+    }
+  });
+});
