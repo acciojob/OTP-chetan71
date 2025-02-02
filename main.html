@@ -4,12 +4,98 @@
 
 <head>
 	<link rel="stylesheet" href="styles.css">
+	  <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #verification_heading {
+            margin-bottom: 10px;
+        }
+
+        #verification_subtext {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .code-container {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .code {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .code:focus {
+            outline: 2px solid #2196F3;
+        }
+    </style>
 </head>
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1 id="verification_heading">OTP Verification</h1>
+    <div id="verification_subtext">Please enter the OTP sent to your mobile number.</div>
+    <div class="code-container">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+        <input type="text" class="code" maxlength="1" placeholder="0" inputmode="numeric">
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('.code');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                if (/^\d$/.test(value)) {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                } else {
+                    e.target.value = '';
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace') {
+                    e.preventDefault();
+                    let lastFilledIndex = -1;
+
+                    // Find the last filled input
+                    for (let i = inputs.length - 1; i >= 0; i--) {
+                        if (inputs[i].value !== '') {
+                            lastFilledIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (lastFilledIndex !== -1) {
+                        inputs[lastFilledIndex].value = '';
+                        if (lastFilledIndex > 0) {
+                            inputs[lastFilledIndex - 1].focus();
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 
