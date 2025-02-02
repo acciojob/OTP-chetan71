@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OTP Verification</title>
-  <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
     <h1 id="verification_heading">Verify Your Account</h1>
-
-    <p id="verification_subtext">Enter the 6-digit OTP sent to your phone</p>
+    <div id="verification_subtext">Please enter the OTP sent to your mobile number.</div>
     <div class="code-container">
-      <input type="text" class="code" maxlength="1" id="otp-1">
-      <input type="text" class="code" maxlength="1" id="otp-2">
-      <input type="text" class="code" maxlength="1" id="otp-3">
-      <input type="text" class="code" maxlength="1" id="otp-4">
-      <input type="text" class="code" maxlength="1" id="otp-5">
-      <input type="text" class="code" maxlength="1" id="otp-6">
+        <input type="text" id="code-0" class="code" maxlength="1" inputmode="numeric">
+        <input type="text" id="code-1" class="code" maxlength="1" inputmode="numeric">
+        <input type="text" id="code-2" class="code" maxlength="1" inputmode="numeric">
+        <input type="text" id="code-3" class="code" maxlength="1" inputmode="numeric">
+        <input type="text" id="code-4" class="code" maxlength="1" inputmode="numeric">
+        <input type="text" id="code-5" class="code" maxlength="1" inputmode="numeric">
     </div>
-  </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

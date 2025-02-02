@@ -1,19 +1,27 @@
-otpInputs.forEach((input, index) => {
-  input.addEventListener('input', () => {
-    if (input.value && index < otpInputs.length - 1) {
-      // Focus the next input field
-      setTimeout(() => {
-        otpInputs[index + 1].focus();
-      }, 100); // Added a small delay
-    }
-  });
+const inputs = document.querySelectorAll('.code');
 
-  input.addEventListener('keydown', (event) => {
-    if (event.key === 'Backspace' && !input.value && index > 0) {
-      // Focus the previous input if backspace is pressed and current field is empty
-      setTimeout(() => {
-        otpInputs[index - 1].focus();
-      }, 100);
-    }
-  });
+inputs.forEach((input, index) => {
+    // Handle numeric input
+    input.addEventListener('input', (e) => {
+        const value = e.target.value;
+        if (/^\d$/.test(value)) {
+            if (index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        } else {
+            e.target.value = '';
+        }
+    });
+
+    // Handle backspace navigation
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace') {
+            e.preventDefault();
+            if (e.target.value === '' && index > 0) {
+                inputs[index - 1].focus();
+            } else {
+                e.target.value = '';
+            }
+        }
+    });
 });
