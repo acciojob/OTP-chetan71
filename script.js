@@ -1,5 +1,10 @@
 const inputs = document.querySelectorAll('.code');
 
+// Set focus on the first input on page load
+if (inputs.length > 0) {
+    inputs[0].focus();
+}
+
 inputs.forEach((input, index) => {
     // Handle numeric input
     input.addEventListener('input', (e) => {
@@ -19,7 +24,7 @@ inputs.forEach((input, index) => {
             e.preventDefault();
             if (index > 0) {
                 inputs[index - 1].focus();
-				e.target.value = '';
+                e.target.value = '';
             } else {
                 e.target.value = '';
             }
